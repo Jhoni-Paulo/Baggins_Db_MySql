@@ -19,21 +19,6 @@ CREATE SCHEMA IF NOT EXISTS `bagginsdb` DEFAULT CHARACTER SET utf8 ;
 USE `bagginsdb` ;
 
 -- -----------------------------------------------------
--- Table `bagginsdb`.`TIPO_PESSOA`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bagginsdb`.`TIPO_PESSOA` ;
-
-CREATE TABLE IF NOT EXISTS `bagginsdb`.`TIPO_PESSOA` (
-  `IdTipoPessoa` INT NOT NULL,
-  `Usuario` INT NOT NULL DEFAULT 1 COMMENT 'Tipo que representa Pessoa como um usuario',
-  `UsuarioEmpresa` INT NOT NULL DEFAULT 2 COMMENT 'Tipo que representa pessoa como uma empresa e usuário ao mesmo tempo',
-  PRIMARY KEY (`IdTipoPessoa`),
-  UNIQUE INDEX `Usuario_UNIQUE` (`Usuario` ASC),
-  UNIQUE INDEX `Empresa_UNIQUE` (`UsuarioEmpresa` ASC))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `bagginsdb`.`CONTATO`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `bagginsdb`.`CONTATO` ;
@@ -41,7 +26,7 @@ DROP TABLE IF EXISTS `bagginsdb`.`CONTATO` ;
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`CONTATO` (
   `IdContato` INT NOT NULL,
   `Pais` VARCHAR(3) NULL,
-  `DDD` INT NULL,
+  `Ddd` INT NULL,
   `Numero` VARCHAR(20) NULL,
   PRIMARY KEY (`IdContato`))
 ENGINE = InnoDB;
@@ -54,19 +39,13 @@ DROP TABLE IF EXISTS `bagginsdb`.`PESSOA` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`PESSOA` (
   `IdPessoa` INT NOT NULL,
-  `nome` VARCHAR(100) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
-  `TIPO_PESSOA_IdTipoPessoa` INT NOT NULL,
+  `Nome` VARCHAR(100) NOT NULL,
+  `Email` VARCHAR(100) NOT NULL,
+  `IsEmpresa` BOOLEAN NOT NULL,
   `CONTATO_IdContato` INT NOT NULL,
-  PRIMARY KEY (`IdPessoa`, `TIPO_PESSOA_IdTipoPessoa`, `CONTATO_IdContato`),
+  PRIMARY KEY (`IdPessoa`,`CONTATO_IdContato`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
-  INDEX `fk_PESSOA_TIPO_PESSOA1_idx` (`TIPO_PESSOA_IdTipoPessoa` ASC),
   INDEX `fk_PESSOA_CONTATO1_idx` (`CONTATO_IdContato` ASC),
-  CONSTRAINT `fk_PESSOA_TIPO_PESSOA1`
-    FOREIGN KEY (`TIPO_PESSOA_IdTipoPessoa`)
-    REFERENCES `bagginsdb`.`TIPO_PESSOA` (`IdTipoPessoa`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_PESSOA_CONTATO1`
     FOREIGN KEY (`CONTATO_IdContato`)
     REFERENCES `bagginsdb`.`CONTATO` (`IdContato`)
