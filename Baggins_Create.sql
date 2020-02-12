@@ -410,29 +410,29 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `bagginsdb`.`CHAT`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bagginsdb`.`CHAT` ;
+-- DROP TABLE IF EXISTS `bagginsdb`.`CHAT` ;
 
-CREATE TABLE IF NOT EXISTS `bagginsdb`.`CHAT` (
-  `IdChat` INT NOT NULL,
-  `Mensagem` VARCHAR(500) NOT NULL,
-  `PESSOA_IdPessoaEnvio` INT NOT NULL,
-  `PESSOA_CONTATO_IdContatoEnvio` INT NOT NULL,
-  `PESSOA_IdPessoaRecebimento` INT NOT NULL,
-  `PESSOA_CONTATO_IdContatoRecebimento` INT NOT NULL,
-  PRIMARY KEY (`IdChat`, `PESSOA_IdPessoaEnvio`, `PESSOA_CONTATO_IdContatoEnvio`, `PESSOA_IdPessoaRecebimento`, `PESSOA_CONTATO_IdContatoRecebimento`),
-  INDEX `fk_CHAT_PESSOA1_idx` (`PESSOA_IdPessoaEnvio` ASC, `PESSOA_CONTATO_IdContatoEnvio` ASC),
-  INDEX `fk_CHAT_PESSOA2_idx` (`PESSOA_IdPessoaRecebimento` ASC, `PESSOA_CONTATO_IdContatoRecebimento` ASC),
-  CONSTRAINT `fk_CHAT_PESSOA1`
-    FOREIGN KEY (`PESSOA_IdPessoaEnvio` , `PESSOA_CONTATO_IdContatoEnvio`)
-    REFERENCES `bagginsdb`.`PESSOA` (`IdPessoa` , `TIPO_PESSOA_IdTipoPessoa` , `CONTATO_IdContato`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_CHAT_PESSOA2`
-    FOREIGN KEY (`PESSOA_IdPessoaRecebimento` , `PESSOA_CONTATO_IdContatoRecebimento`)
-    REFERENCES `bagginsdb`.`PESSOA` (`IdPessoa` , `CONTATO_IdContato`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+-- CREATE TABLE IF NOT EXISTS `bagginsdb`.`CHAT` (
+--  `IdChat` INT NOT NULL,
+--  `Mensagem` VARCHAR(500) NOT NULL,
+--  `PESSOA_IdPessoaEnvio` INT NOT NULL,
+--  `PESSOA_CONTATO_IdContatoEnvio` INT NOT NULL,
+--  `PESSOA_IdPessoaRecebimento` INT NOT NULL,
+--  `PESSOA_CONTATO_IdContatoRecebimento` INT NOT NULL,
+--  PRIMARY KEY (`IdChat`, `PESSOA_IdPessoaEnvio`, `PESSOA_CONTATO_IdContatoEnvio`, `PESSOA_IdPessoaRecebimento`, `PESSOA_CONTATO_IdContatoRecebimento`),
+--  INDEX `fk_CHAT_PESSOA1_idx` (`PESSOA_IdPessoaEnvio` ASC, `PESSOA_CONTATO_IdContatoEnvio` ASC),
+--  INDEX `fk_CHAT_PESSOA2_idx` (`PESSOA_IdPessoaRecebimento` ASC, `PESSOA_CONTATO_IdContatoRecebimento` ASC),
+--  CONSTRAINT `fk_CHAT_PESSOA1`
+--    FOREIGN KEY (`PESSOA_IdPessoaEnvio` , `PESSOA_CONTATO_IdContatoEnvio`)
+--    REFERENCES `bagginsdb`.`PESSOA` (`IdPessoa` , `TIPO_PESSOA_IdTipoPessoa` , `CONTATO_IdContato`)
+--    ON DELETE NO ACTION
+--    ON UPDATE NO ACTION,
+--  CONSTRAINT `fk_CHAT_PESSOA2`
+--    FOREIGN KEY (`PESSOA_IdPessoaRecebimento` , `PESSOA_CONTATO_IdContatoRecebimento`)
+--    REFERENCES `bagginsdb`.`PESSOA` (`IdPessoa` , `CONTATO_IdContato`)
+--    ON DELETE NO ACTION
+--    ON UPDATE NO ACTION)
+-- ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
