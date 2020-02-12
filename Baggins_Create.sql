@@ -24,7 +24,7 @@ USE `bagginsdb` ;
 DROP TABLE IF EXISTS `bagginsdb`.`Contato` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`Contato` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Pais` VARCHAR(3) NULL,
   `Ddd` INT NULL,
   `Numero` VARCHAR(20) NULL,
@@ -38,7 +38,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `bagginsdb`.`Pessoa` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`Pessoa` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(100) NOT NULL,
   `Email` VARCHAR(100) NOT NULL,
   `SenhaHash` VARCHAR(250) NOT NULL, 
@@ -61,7 +61,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `bagginsdb`.`Endereco` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`Endereco` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `CEP` INT NOT NULL,
   `Numero` INT NULL,
   `Rua` VARCHAR(100) NOT NULL,
@@ -84,7 +84,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `bagginsdb`.`Beneficio` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`Beneficio` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(100) NOT NULL,
   `Descricao` VARCHAR(400) NOT NULL,
   PRIMARY KEY (`id`))
@@ -97,7 +97,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `bagginsdb`.`Oportunidade` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`Oportunidade` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(50) NOT NULL,
   `Descricao` VARCHAR(500) NOT NULL,
   `PESSOA_IdPessoa` INT NOT NULL,
@@ -125,7 +125,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `bagginsdb`.`Nivel` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`Nivel` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Basico` INT NULL DEFAULT 1,
   `Intermediario` INT NULL DEFAULT 2,
   `Avancado` INT NULL DEFAULT 3,
@@ -140,7 +140,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `bagginsdb`.`Idioma` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`Idioma` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NOT NULL,
   `Instituicao` VARCHAR(100) NOT NULL,
   `Duracao` INT NOT NULL,
@@ -169,7 +169,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `bagginsdb`.`Curso` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`Curso` (
-  `id` INT NOT NULL COMMENT '		',
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT'		',
   `Nome` VARCHAR(100) NOT NULL,
   `Descricao` VARCHAR(450) NOT NULL,
   `Instituicao` VARCHAR(100) NOT NULL,
@@ -191,7 +191,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `bagginsdb`.`GrauEscolar` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`GrauEscolar` (
-  `id` INT NOT NULL COMMENT '	',
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '	',
   `Basico` INT NULL DEFAULT 1,
   `Medio` INT NULL DEFAULT 2,
   `GraduacaoIncompleto` INT NULL DEFAULT 3,
@@ -214,7 +214,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `bagginsdb`.`FormacaoEscolar` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`FormacaoEscolar` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Curso` VARCHAR(100) NOT NULL,
   `instituicao` VARCHAR(100) NOT NULL,
   `GRAU_ESCOLAR_IdGrauEscolar` INT NOT NULL,
@@ -242,7 +242,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `bagginsdb`.`ExperienciaProfissional` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`ExperienciaProfissional` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Empresa` VARCHAR(100) NOT NULL,
   `Cargo` VARCHAR(100) NOT NULL,
   `Descricao` VARCHAR(400) NOT NULL,
@@ -265,7 +265,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `bagginsdb`.`Curriculo` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`Curriculo` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `PESSOA_IdPessoa` INT NOT NULL,
   `PESSOA_CONTATO_IdContato` INT NOT NULL,
   `IDIOMA_IdIdioma` INT NOT NULL,
@@ -314,7 +314,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `bagginsdb`.`Candidatura` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`Candidatura` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `CURRICULO_IdCurriculo` INT NOT NULL,
   `CURRICULO_PESSOA_IdPessoa` INT NOT NULL,
   `CURRICULO_PESSOA_CONTATO_IdContato` INT NOT NULL,
