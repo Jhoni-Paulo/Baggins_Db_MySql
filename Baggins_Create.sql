@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`PESSOA` (
   `IdPessoa` INT NOT NULL,
   `Nome` VARCHAR(100) NOT NULL,
   `Email` VARCHAR(100) NOT NULL,
+  `SenhaHash` VARCHAR(250) NOT NULL, 
   `IsEmpresa` BOOLEAN NOT NULL,
   `CONTATO_IdContato` INT NOT NULL,
   PRIMARY KEY (`IdPessoa`,`CONTATO_IdContato`),
@@ -76,69 +77,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`ENDERECO` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `bagginsdb`.`LOGIN`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bagginsdb`.`LOGIN` ;
-
-CREATE TABLE IF NOT EXISTS `bagginsdb`.`LOGIN` (
-  `IdLogin` INT NOT NULL,
-  `Senha` VARCHAR(20) NOT NULL,
-  `PESSOA_IdPessoa` INT NOT NULL,
-  PRIMARY KEY (`IdLogin`, `PESSOA_IdPessoa`),
-  INDEX `fk_LOGIN_PESSOA1_idx` (`PESSOA_IdPessoa` ASC),
-  CONSTRAINT `fk_LOGIN_PESSOA1`
-    FOREIGN KEY (`PESSOA_IdPessoa`)
-    REFERENCES `bagginsdb`.`PESSOA` (`IdPessoa`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `bagginsdb`.`ENDERECO`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bagginsdb`.`ENDERECO` ;
-
-CREATE TABLE IF NOT EXISTS `bagginsdb`.`ENDERECO` (
-  `IdEndereco` INT NOT NULL,
-  `CEP` INT NOT NULL,
-  `Numero` INT NULL,
-  `Rua` VARCHAR(100) NOT NULL,
-  `Estado` VARCHAR(50) NOT NULL,
-  `Cidade` VARCHAR(100) NOT NULL,
-  `Bairro` VARCHAR(100) NOT NULL,
-  `PESSOA_IdPessoa` INT NOT NULL,
-  PRIMARY KEY (`IdEndereco`, `PESSOA_IdPessoa`),
-  INDEX `fk_ENDERECO_PESSOA1_idx` (`PESSOA_IdPessoa` ASC),
-  CONSTRAINT `fk_ENDERECO_PESSOA1`
-    FOREIGN KEY (`PESSOA_IdPessoa`)
-    REFERENCES `bagginsdb`.`PESSOA` (`IdPessoa`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `bagginsdb`.`LOGIN`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bagginsdb`.`LOGIN` ;
-
-CREATE TABLE IF NOT EXISTS `bagginsdb`.`LOGIN` (
-  `IdLogin` INT NOT NULL,
-  `Senha` VARCHAR(20) NOT NULL,
-  `PESSOA_IdPessoa` INT NOT NULL,
-  PRIMARY KEY (`IdLogin`, `PESSOA_IdPessoa`),
-  INDEX `fk_LOGIN_PESSOA1_idx` (`PESSOA_IdPessoa` ASC),
-  CONSTRAINT `fk_LOGIN_PESSOA1`
-    FOREIGN KEY (`PESSOA_IdPessoa`)
-    REFERENCES `bagginsdb`.`PESSOA` (`IdPessoa`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `bagginsdb`.`BENEFICIO`
