@@ -188,9 +188,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `bagginsdb`.`GRAU_ESCOLAR`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bagginsdb`.`Grau_Escolar` ;
+DROP TABLE IF EXISTS `bagginsdb`.`GrauEscolar` ;
 
-CREATE TABLE IF NOT EXISTS `bagginsdb`.`Grau_Escolar` (
+CREATE TABLE IF NOT EXISTS `bagginsdb`.`GrauEscolar` (
   `id` INT NOT NULL COMMENT '	',
   `Basico` INT NULL DEFAULT 1,
   `Medio` INT NULL DEFAULT 2,
@@ -211,9 +211,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `bagginsdb`.`FORMACAO_ESCOLAR`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bagginsdb`.`Formacao_Escolar` ;
+DROP TABLE IF EXISTS `bagginsdb`.`FormacaoEscolar` ;
 
-CREATE TABLE IF NOT EXISTS `bagginsdb`.`Formacao_Escolar` (
+CREATE TABLE IF NOT EXISTS `bagginsdb`.`FormacaoEscolar` (
   `id` INT NOT NULL,
   `Curso` VARCHAR(100) NOT NULL,
   `instituicao` VARCHAR(100) NOT NULL,
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`Formacao_Escolar` (
   INDEX `fk_FORMACAO_ESCOLAR_PESSOA1_idx` (`PESSOA_IdPessoa` ASC),
   CONSTRAINT `fk_FORMACAO_ESCOLAR_GRAU_ESCOLAR1`
     FOREIGN KEY (`GRAU_ESCOLAR_IdGrauEscolar`)
-    REFERENCES `bagginsdb`.`GRAU_ESCOLAR` (`id`)
+    REFERENCES `bagginsdb`.`GrauEscolar` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FORMACAO_ESCOLAR_PESSOA1`
@@ -239,9 +239,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `bagginsdb`.`EXPERIENCIA_PROFISSIONAL`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bagginsdb`.`Experiencia_Profissional` ;
+DROP TABLE IF EXISTS `bagginsdb`.`ExperienciaProfissional` ;
 
-CREATE TABLE IF NOT EXISTS `bagginsdb`.`Experiencia_Profissional` (
+CREATE TABLE IF NOT EXISTS `bagginsdb`.`ExperienciaProfissional` (
   `id` INT NOT NULL,
   `Empresa` VARCHAR(100) NOT NULL,
   `Cargo` VARCHAR(100) NOT NULL,
@@ -297,12 +297,12 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`Curriculo` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_CURRICULO_FORMACAO_ESCOLAR1`
     FOREIGN KEY (`FORMACAO_ESCOLAR_IdFormacaoEscolar` , `FORMACAO_ESCOLAR_GRAU_ESCOLAR_IdGrauEscolar`)
-    REFERENCES `bagginsdb`.`FORMACAO_ESCOLAR` (`id` , `GRAU_ESCOLAR_IdGrauEscolar`)
+    REFERENCES `bagginsdb`.`FormacaoEscolar` (`id` , `GRAU_ESCOLAR_IdGrauEscolar`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_CURRICULO_EXPERIENCIA_PROFISSIONAL1`
     FOREIGN KEY (`EXPERIENCIA_PROFISSIONAL_IdExperienciaProfissional`)
-    REFERENCES `bagginsdb`.`EXPERIENCIA_PROFISSIONAL` (`id`)
+    REFERENCES `bagginsdb`.`ExperienciaProfissional` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
