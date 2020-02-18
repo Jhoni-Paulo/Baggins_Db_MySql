@@ -24,10 +24,10 @@ USE `bagginsDB` ;
 DROP TABLE IF EXISTS `bagginsDB`.`TipoPessoa` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsDB`.`TipoPessoa` (
-  `IdTipoPessoa` INT NOT NULL,
+  `id` INT NOT NULL,
   `usuario` INT NOT NULL DEFAULT 1 COMMENT 'Tipo que representa Pessoa como um usuario',
   `usuarioEmpresa` INT NOT NULL DEFAULT 2 COMMENT 'Tipo que representa pessoa como uma empresa e usuário ao mesmo tempo',
-  PRIMARY KEY (`IdTipoPessoa`),
+  PRIMARY KEY (`id`),
   UNIQUE INDEX `Usuario_UNIQUE` (`usuario` ASC),
   UNIQUE INDEX `Empresa_UNIQUE` (`usuarioEmpresa` ASC))
 ENGINE = InnoDB;
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `bagginsDB`.`Pessoa` (
   INDEX `fk_PESSOA_CONTATO1_idx` (`idContato` ASC),
   CONSTRAINT `fk_PESSOA_TIPO_PESSOA1`
     FOREIGN KEY (`idTipoPessoa`)
-    REFERENCES `bagginsDB`.`TipoPessoa` (`IdTipoPessoa`)
+    REFERENCES `bagginsDB`.`TipoPessoa` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PESSOA_CONTATO1`
@@ -75,29 +75,16 @@ CREATE TABLE IF NOT EXISTS `bagginsDB`.`Pessoa` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `bagginsDB`.`ENDERECO`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bagginsDB`.`ENDERECO` ;
-
-CREATE TABLE IF NOT EXISTS `bagginsDB`.`ENDERECO` (
-  `IdEndereco` INT NOT NULL,
-  `CEP` VARCHAR(45) NULL,
-  PRIMARY KEY (`IdEndereco`))
-ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `bagginsDB`.`LOGIN`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `bagginsDB`.`LOGIN` ;
 
-CREATE TABLE IF NOT EXISTS `bagginsDB`.`LOGIN` (
-  `IDLOGIN` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `bagginsDB`.`Login` (
+  `id` INT NOT NULL,
   `senha` VARCHAR(20) NOT NULL,
   `PESSOA_IdPessoa` INT NOT NULL,
-  PRIMARY KEY (`IDLOGIN`, `PESSOA_IdPessoa`),
+  PRIMARY KEY (`id`, `PESSOA_IdPessoa`),
   INDEX `fk_USUARIO_PESSOA_idx` (`PESSOA_IdPessoa` ASC),
   CONSTRAINT `fk_USUARIO_PESSOA`
     FOREIGN KEY (`PESSOA_IdPessoa`)
@@ -185,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `bagginsDB`.`Curso` (
   `id` INT NOT NULL COMMENT '		',
   `nomeCurso` VARCHAR(100) NOT NULL,
   `descricao` VARCHAR(450) NOT NULL,
-  `Instituicao` VARCHAR(100) NOT NULL,
+  `instituicao` VARCHAR(100) NOT NULL,
   `dtConclusao` DATETIME NOT NULL,
   `idPessoa` INT NOT NULL,
   PRIMARY KEY (`id`, `idPessoa`),
@@ -208,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `bagginsDB`.`FormacaoEscolar` (
   `curso` VARCHAR(100) NOT NULL,
   `instituicao` VARCHAR(100) NOT NULL,
   `grauEscola` INT NOT NULL COMMENT '0 - Sem Formação\n1 - Basico\n2 - Medio Incompleto\n3 - Medio completo\n4 - Superior incompleto\n5 - Superior cursando\n6 - Superior completo\n7 - Pos Graduação incompleta\n8 - Pos Graduação cursando\n9 - Pos Graduação completa\n10 - Mestrado Incompleto\n11 - Mestrado Cursando\n12 - Mestrado Completo\n13 - Doutorado Incompleto\n14 - Doutorado Cursando\n15 - Doutorado Completo\n',
-  `DtConclusao` DATETIME NOT NULL,
+  `dtConclusao` DATETIME NOT NULL,
   `idPessoa` INT NOT NULL,
   PRIMARY KEY (`id`, `idPessoa`),
   INDEX `fk_FORMACAO_ESCOLAR_PESSOA1_idx` (`idPessoa` ASC),
