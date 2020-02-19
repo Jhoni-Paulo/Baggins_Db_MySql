@@ -189,11 +189,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bagginsDB`.`ExperienciaProficional`
+-- Table `bagginsDB`.`ExperienciaProfissional`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bagginsDB`.`ExperienciaProficional` ;
+DROP TABLE IF EXISTS `bagginsDB`.`ExperienciaProfissional` ;
 
-CREATE TABLE IF NOT EXISTS `bagginsDB`.`ExperienciaProficional` (
+CREATE TABLE IF NOT EXISTS `bagginsDB`.`ExperienciaProfissional` (
   `id` INT NOT NULL,
   `empresa` VARCHAR(100) NOT NULL,
   `cargo` VARCHAR(100) NOT NULL,
@@ -251,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `bagginsDB`.`Curriculo` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_CURRICULO_EXPERIENCIA_PROFISSIONAL1`
     FOREIGN KEY (`idExperienciaProfissional`)
-    REFERENCES `bagginsDB`.`ExperienciaProficional` (`id`)
+    REFERENCES `bagginsDB`.`ExperienciaProfissional` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
