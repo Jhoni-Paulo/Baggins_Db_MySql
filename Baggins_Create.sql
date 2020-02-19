@@ -76,25 +76,6 @@ CREATE TABLE IF NOT EXISTS `bagginsDB`.`Pessoa` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `bagginsDB`.`LOGIN`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `bagginsDB`.`LOGIN` ;
-
-CREATE TABLE IF NOT EXISTS `bagginsDB`.`Login` (
-  `id` INT NOT NULL,
-  `senha` VARCHAR(20) NOT NULL,
-  `PESSOA_IdPessoa` INT NOT NULL,
-  PRIMARY KEY (`id`, `PESSOA_IdPessoa`),
-  INDEX `fk_USUARIO_PESSOA_idx` (`PESSOA_IdPessoa` ASC),
-  CONSTRAINT `fk_USUARIO_PESSOA`
-    FOREIGN KEY (`PESSOA_IdPessoa`)
-    REFERENCES `bagginsDB`.`Pessoa` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `bagginsDB`.`Endereco`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `bagginsDB`.`Endereco` ;
