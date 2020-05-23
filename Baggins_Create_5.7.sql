@@ -237,7 +237,7 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `bagginsdb`.`idioma_proficiencia` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`idioma_proficiencia` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `proficiencia` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
