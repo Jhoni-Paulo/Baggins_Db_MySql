@@ -243,3 +243,25 @@ insert into habilidade (habilidade) values ("Jardinagem"),
 ("Cuidado de Animais");
 
 
+insert into oferta (oferta) values ("Dormitório Privado"),
+("Quarto Compartilhado"),
+("Camping"),
+("Café da manhã"),
+("1 dia livre por semana"),
+("2 dias livres por semana"),
+("3 dias livres por semana"),
+("Cozinha equipada"),
+("Descontos em tours/hospedagem"),
+("Desconto com restaurantes"),
+("Passeios de graça"),
+("Carona na chegada"),
+("Bicicletas a vontade"),
+("Desconto em pubs e/ou festas"),
+("Certificado"),
+("Almoço"),
+("Jantar"),
+("Aulas de Idiomas");
+
+
+insert into tipo_oportunidade (tipo_oportunidade) values ("ONG"),
+("Pequenos Negócios");
