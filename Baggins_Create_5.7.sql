@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`oportunidade` (
   `titulo` VARCHAR(240) NOT NULL,
   `descricao` VARCHAR(1000) NOT NULL,
   `idTipoOportunidade` INT NOT NULL,
-  `idAnfiriao` INT NOT NULL,
+  `idAnfitriao` INT NOT NULL,
   `disponibilidadeInicio` VARCHAR(45) NOT NULL,
   `disponibilidadeFinal` VARCHAR(45) NOT NULL,
   `horasSemanais` VARCHAR(45) NOT NULL,
@@ -313,6 +313,7 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`endereco_anfitriao` (
   `pais` VARCHAR(45) NOT NULL,
   `endereco` VARCHAR(45) NOT NULL,
   `complemento` VARCHAR(45) NOT NULL,
+  `cep` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_endereco_oportunidade_idx` (`idAnfitriao` ASC),
   CONSTRAINT `fk_endereco_oportunidade`
