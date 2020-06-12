@@ -118,9 +118,9 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`oportunidade` (
   `mediaAvaliacao` FLOAT(3,2) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_tipo_oportunidade_idx` (`idTipoOportunidade` ASC),
-  INDEX `fk_oportunidade_anfitriao_idx` (`idAnfiriao` ASC),
+  INDEX `fk_oportunidade_anfitriao_idx` (`idAnfitriao` ASC),
   CONSTRAINT `fk_oportunidade_anfitriao`
-    FOREIGN KEY (`idAnfiriao`)
+    FOREIGN KEY (`idAnfitriao`)
     REFERENCES `bagginsdb`.`anfitriao` (`id`),
   CONSTRAINT `fk_tipo_oportunidade`
     FOREIGN KEY (`idTipoOportunidade`)
@@ -455,6 +455,24 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`tokens` (
     FOREIGN KEY (`idPessoa`)
     REFERENCES `bagginsdb`.`pessoa` (`id`))
 ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `bagginsdb`.`files`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bagginsdb`.`files` ;
+
+CREATE TABLE IF NOT EXISTS `bagginsdb`.`files` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `file` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `type` VARCHAR(20),
+  `subtype` VARCHAR(20),
+  `created_at` DATETIME NULL DEFAULT NULL,
+  `updated_at` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+  ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
