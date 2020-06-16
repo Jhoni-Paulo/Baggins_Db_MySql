@@ -57,7 +57,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`pessoa` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 36
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -67,11 +66,10 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `bagginsdb`.`tipo_oportunidade` ;
 
 CREATE TABLE IF NOT EXISTS `bagginsdb`.`tipo_oportunidade` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `tipo_oportunidade` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `tipo_oportunidade` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -97,7 +95,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`anfitriao` (
     FOREIGN KEY (`tipoEmpresa`)
     REFERENCES `bagginsdb`.`tipo_oportunidade` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 33
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -129,7 +126,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`oportunidade` (
     FOREIGN KEY (`idTipoOportunidade`)
     REFERENCES `bagginsdb`.`tipo_oportunidade` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 64
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -160,7 +156,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`candidatura` (
     FOREIGN KEY (`idOportunidade`)
     REFERENCES `bagginsdb`.`oportunidade` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 32
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -179,7 +174,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`contato` (
     FOREIGN KEY (`idPessoa`)
     REFERENCES `bagginsdb`.`pessoa` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -201,7 +195,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`curriculo` (
     FOREIGN KEY (`idPessoa`)
     REFERENCES `bagginsdb`.`pessoa` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -224,7 +217,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`endereco_anfitriao` (
     FOREIGN KEY (`idAnfitriao`)
     REFERENCES `bagginsdb`.`anfitriao` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -248,7 +240,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`endereco_pessoa` (
     FOREIGN KEY (`idPessoa`)
     REFERENCES `bagginsdb`.`pessoa` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -263,7 +254,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`habilidade` (
   `icon` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 25
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -287,7 +277,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`habilidade_pessoa` (
     FOREIGN KEY (`idPessoa`)
     REFERENCES `bagginsdb`.`pessoa` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 25
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -328,7 +317,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`oferta` (
   `icon` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 25
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -355,7 +343,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`oportunidade_avaliacao` (
     FOREIGN KEY (`idPessoa`)
     REFERENCES `bagginsdb`.`pessoa` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 19
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -378,7 +365,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`oportunidade_oferta` (
     FOREIGN KEY (`idOportunidade`)
     REFERENCES `bagginsdb`.`oportunidade` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 37
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -406,7 +392,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`pessoa_idioma` (
     FOREIGN KEY (`idProficiencia`)
     REFERENCES `bagginsdb`.`idioma_proficiencia` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 32
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -429,7 +414,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`requisito` (
     FOREIGN KEY (`idOportunidade`)
     REFERENCES `bagginsdb`.`oportunidade` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 17
 DEFAULT CHARACTER SET = utf8;
 
 
