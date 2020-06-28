@@ -1,3 +1,5 @@
+insert into idioma (id, idioma) values (0, "--Selecione--");
+
 insert into idioma (idioma) values ("Africâner"),
 ("Akan"),
 ("Albanês"),
@@ -147,7 +149,8 @@ insert into idioma (idioma) values ("Africâner"),
 ("Patoá"),
 ("Inglês pidgin"),
 ("Polonês"),
-("Português"),
+("Português|Brasil"),
+("Português|Portugal"),
 ("Pothwari"),
 ("Pulaar"),
 ("Punjabi"),
@@ -213,8 +216,8 @@ insert into idioma (idioma) values ("Africâner"),
 ("Yupik"),
 ("Zulu");
 
-
-insert into idioma_proficiencia (proficiencia) values ('Iniciante'), ('Intermediário'), ('Fluente');
+insert into idioma_proficiencia (id, proficiencia) values (0, "--Selecione--");
+insert into idioma_proficiencia (proficiencia) values ('Indefinido'), ('Iniciante'), ('Intermediário'), ('Fluente'), ('Nativo');
 
 
 INSERT INTO `habilidade` VALUES (1,'Jardinagem','fa-seedling'),(2,'Ajuda em Cultivos e Colheitas','fa-tractor'),(3,'Bartender','fa-cocktail'),(4,'Consertos Gerais','fa-tools'),(5,'Recepção','fa-concierge-bell'),(6,'Administração','fa-users-cog'),(7,'Desenvolvimento Web','fa-laptop-code'),(8,'Mídias Sociais','fa-ad'),(9,'Ensinar Idiomas','fa-language'),(10,'Pintura e Decoração','fa-paint-roller'),(11,'Tarefas Domésticas','fa-bed'),(12,'Ajuda na Limpeza','fa-broom'),(13,'Organizar eventos e festas','fa-calendar'),(14,'Guia Local','fa-map'),(15,'Trabalho Social','fa-hands-helping'),(16,'Fotografia','fa-camera-retro'),(17,'Música','fa-music'),(18,'Preparar Refeições','fa-utensils'),(19,'Ajudante de Cozinha','fa-hamburger'),(20,'Produção de vídeo','fa-video'),(21,'Ensinar Esportes','fa-running'),(22,'Turno da Noite','fa-moon'),(23,'Cuidado de Crianças','fa-baby'),(24,'Cuidado de Animais','fa-paw');
@@ -240,5 +243,5 @@ insert into oferta (oferta) values ("Dormitório Privado"),
 ("Aulas de Idiomas");
 
 
-insert into tipo_oportunidade (tipo_oportunidade) values ("ONG"),
+insert into tipo_oportunidade (tipo_oportunidade) values (""), ("ONG"),
 ("Empresa");

@@ -38,6 +38,23 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
+-- Table `bagginsdb`.`files`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bagginsdb`.`files` ;
+
+CREATE TABLE IF NOT EXISTS `bagginsdb`.`files` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `file` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `type` VARCHAR(20),
+  `subtype` VARCHAR(20),
+  `created_at` DATETIME NULL DEFAULT NULL,
+  `updated_at` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+  ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+-- -----------------------------------------------------
 -- Table `bagginsdb`.`pessoa`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `bagginsdb`.`pessoa` ;
@@ -54,8 +71,14 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`pessoa` (
   `provider` VARCHAR(240) NULL DEFAULT NULL,
   `provider_id` VARCHAR(240) NULL DEFAULT NULL,
   `provider_token` VARCHAR(240) NULL DEFAULT NULL,
+  `idFile` INT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  INDEX `fk_pessoa_file_idx` (`idFile` ASC) ,
+  CONSTRAINT `fk_pessoa_file`
+    FOREIGN KEY (`idFile`)
+    REFERENCES `bagginsdb`.`files` (`id`)
+  )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
