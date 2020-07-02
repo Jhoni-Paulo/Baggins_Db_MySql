@@ -1,3 +1,5 @@
+use bagginsdb;
+
 insert into idioma (id, idioma) values (0, "--Selecione--");
 
 insert into idioma (idioma) values ("Africâner"),
@@ -223,24 +225,26 @@ insert into idioma_proficiencia (proficiencia) values ('Indefinido'), ('Iniciant
 INSERT INTO `habilidade` VALUES (1,'Jardinagem','fa-seedling'),(2,'Ajuda em Cultivos e Colheitas','fa-tractor'),(3,'Bartender','fa-cocktail'),(4,'Consertos Gerais','fa-tools'),(5,'Recepção','fa-concierge-bell'),(6,'Administração','fa-users-cog'),(7,'Desenvolvimento Web','fa-laptop-code'),(8,'Mídias Sociais','fa-ad'),(9,'Ensinar Idiomas','fa-language'),(10,'Pintura e Decoração','fa-paint-roller'),(11,'Tarefas Domésticas','fa-bed'),(12,'Ajuda na Limpeza','fa-broom'),(13,'Organizar eventos e festas','fa-calendar'),(14,'Guia Local','fa-map'),(15,'Trabalho Social','fa-hands-helping'),(16,'Fotografia','fa-camera-retro'),(17,'Música','fa-music'),(18,'Preparar Refeições','fa-utensils'),(19,'Ajudante de Cozinha','fa-hamburger'),(20,'Produção de vídeo','fa-video'),(21,'Ensinar Esportes','fa-running'),(22,'Turno da Noite','fa-moon'),(23,'Cuidado de Crianças','fa-baby'),(24,'Cuidado de Animais','fa-paw');
 
 
-insert into oferta (oferta) values ("Dormitório Privado"),
-("Quarto Compartilhado"),
-("Camping"),
-("Café da manhã"),
-("1 dia livre por semana"),
-("2 dias livres por semana"),
-("3 dias livres por semana"),
-("Cozinha equipada"),
-("Descontos em tours/hospedagem"),
-("Desconto com restaurantes"),
-("Passeios de graça"),
-("Carona na chegada"),
-("Bicicletas a vontade"),
-("Desconto em pubs e/ou festas"),
-("Certificado"),
-("Almoço"),
-("Jantar"),
-("Aulas de Idiomas");
+INSERT INTO `oferta` 
+VALUES 
+(1,'Dormitório Privado','faLock'),
+(2,'Quarto Compartilhado','faUsers'),
+(3,'Camping','faCampground'),
+(4,'Café da manhã','faCoffee'),
+(5,'1 dia livre por semana','faUmbrellaBeach'),
+(6,'2 dias livres por semana','faUmbrellaBeach'),
+(7,'3 dias livres por semana','faUmbrellaBeach'),
+(8,'Cozinha equipada','faUtensils'),
+(9,'Descontos em tours/hospedagem','faPercent'),
+(10,'Desconto com restaurantes','faPercent'),
+(11,'Passeios de graça','faMapMarked'),
+(12,'Carona na chegada','faCar'),
+(13,'Bicicletas a vontade','faBicycle'),
+(14,'Desconto em pubs e/ou festas','faGlassCheers'),
+(15,'Certificado','faCertificate'),
+(16,'Almoço','faDrumstickBite'),
+(17,'Jantar','faHotdog'),
+(18,'Aulas de Idiomas','faLanguage');
 
 
 insert into tipo_oportunidade (tipo_oportunidade) values (""), ("ONG"),

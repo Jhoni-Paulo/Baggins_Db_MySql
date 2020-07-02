@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`pessoa` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
-  `senha` VARCHAR(240) NOT NULL,
+  `senha` VARCHAR(240) NULL,
   `anfitriao` INT NOT NULL DEFAULT '0',
   `datanasc` VARCHAR(45) NULL DEFAULT '',
   `created_at` VARCHAR(45) NULL DEFAULT NULL,
@@ -71,6 +71,8 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`pessoa` (
   `provider` VARCHAR(240) NULL DEFAULT NULL,
   `provider_id` VARCHAR(240) NULL DEFAULT NULL,
   `provider_token` VARCHAR(240) NULL DEFAULT NULL,
+  `token` VARCHAR(240) NULL DEFAULT NULL,
+  `token_created_at` VARCHAR(240) NULL DEFAULT NULL,
   `idFile` INT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
@@ -132,6 +134,7 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`oportunidade` (
   `descricao` VARCHAR(1000) NOT NULL,
   `idTipoOportunidade` INT NOT NULL DEFAULT '1',
   `idAnfitriao` INT NOT NULL,
+  `idFile` INT NULL,
   `disponibilidadeInicio` VARCHAR(45) NOT NULL,
   `disponibilidadeFinal` VARCHAR(45) NOT NULL,
   `horasSemanais` VARCHAR(45) NOT NULL,
@@ -142,12 +145,16 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`oportunidade` (
   PRIMARY KEY (`id`),
   INDEX `fk_tipo_oportunidade_idx` (`idTipoOportunidade` ASC) ,
   INDEX `fk_oportunidade_anfitriao_id_idx` (`idAnfitriao` ASC) ,
+  INDEX `fk_oport_file_idx` (`idFile` ASC) ,
   CONSTRAINT `fk_oportunidade_anfitriao_id`
     FOREIGN KEY (`idAnfitriao`)
     REFERENCES `bagginsdb`.`anfitriao` (`id`),
   CONSTRAINT `fk_tipo_oportunidade`
     FOREIGN KEY (`idTipoOportunidade`)
-    REFERENCES `bagginsdb`.`tipo_oportunidade` (`id`))
+    REFERENCES `bagginsdb`.`tipo_oportunidade` (`id`),      
+  CONSTRAINT `fk_oport_file`
+    FOREIGN KEY (`idFile`)
+    REFERENCES `bagginsdb`.`files` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -233,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`endereco_anfitriao` (
   `estado` VARCHAR(45) NOT NULL,
   `pais` VARCHAR(45) NOT NULL,
   `endereco` VARCHAR(45) NOT NULL,
-  `complemento` VARCHAR(45) NOT NULL,
+  `complemento` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_endereco_oportunidade_idx` (`idAnfitriao` ASC) ,
   CONSTRAINT `fk_endereco_oportunidade`
@@ -255,8 +262,7 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`endereco_pessoa` (
   `estado` VARCHAR(45) NOT NULL,
   `pais` VARCHAR(45) NOT NULL,
   `endereco` VARCHAR(45) NOT NULL,
-  `complemento` VARCHAR(45) NOT NULL,
-  `cep` INT NOT NULL,
+  `complemento` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_endereco_pessoa_idx` (`idPessoa` ASC) ,
   CONSTRAINT `fk_endereco_pessoa`
@@ -390,7 +396,6 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`oportunidade_oferta` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-
 -- -----------------------------------------------------
 -- Table `bagginsdb`.`pessoa_idioma`
 -- -----------------------------------------------------
@@ -462,6 +467,44 @@ CREATE TABLE IF NOT EXISTS `bagginsdb`.`tokens` (
     REFERENCES `bagginsdb`.`pessoa` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+
+
+-- -----------------------------------------------------
+-- Table `bagginsdb`.`file_oferta`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `bagginsdb`.`file_oferta` ;
+
+CREATE TABLE IF NOT EXISTS `bagginsdb`.`file_oferta` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `idOportunidade` INT NOT NULL,
+  `idFile` INT NOT NULL,
+  `isProfile` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_oportunidade_file_idx` (`idOportunidade` ASC) ,
+  INDEX `fk_file_oportunidade_idx` (`idFile` ASC) ,
+  CONSTRAINT `fk_file_oportunidade`
+    FOREIGN KEY (`idFile`)
+    REFERENCES `bagginsdb`.`files` (`id`),
+  CONSTRAINT `fk_oportunidade_file`
+    FOREIGN KEY (`idOportunidade`)
+    REFERENCES `bagginsdb`.`oportunidade` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+
+CREATE TABLE `historico_usuario` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idUsuario` int NOT NULL,
+  `idOportunidade` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`) /*!80000 INVISIBLE */,
+  KEY `idUsuario_idx` (`idUsuario`),
+  KEY `idOportunidade_idx` (`idOportunidade`),
+  CONSTRAINT `idOportunidade` FOREIGN KEY (`idOportunidade`) REFERENCES `oportunidade` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `idUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `pessoa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
